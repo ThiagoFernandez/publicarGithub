@@ -43,12 +43,14 @@ def optionSelector():
     return option
 
 def userSelector():
-    print(f"{'Welcome to the user selector':-^60}\n1. Login\n2. Register")
+    print(f"{'Welcome to the user selector':-^60}\n1. Login\n2. Register\n3. Exit")
     while True:
         try:
-            option = int(input("Choose an option between 1-2: "))
+            option = int(input("Choose an option between 1-2-3: "))
             if 1 <= option <= 2:
                 break
+            elif option == 3:
+                return "exit"
             else:
                 print("Please, the option must be between 1-2")
         except ValueError:
@@ -238,7 +240,6 @@ def createPassword(a):
     mode = input("Do you want to us to randomize the password?\nyes or no: ").strip().lower()
 
     if mode == "yes":
-    # asegurar mínimo uno de cada tipo
         randomPassword = [
             random.choice(string.ascii_uppercase),
             random.choice(string.ascii_lowercase),
@@ -246,12 +247,10 @@ def createPassword(a):
             random.choice(string.punctuation)
     ]
 
-    # rellenar hasta longitud >= 12
         todos = string.ascii_letters + string.digits + string.punctuation
         while len(randomPassword) < 12:
             randomPassword.append(random.choice(todos))
 
-    # mezclar para evitar patrón
         random.shuffle(randomPassword)
         randomPassword = "".join(randomPassword)
 
@@ -358,7 +357,7 @@ except json.JSONDecodeError:
 
 users = list(data.keys())
 
-
+saveKey()
 key = loadKey()
 cipher = Fernet(key)
 
