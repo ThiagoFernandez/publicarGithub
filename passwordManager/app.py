@@ -357,7 +357,7 @@ except json.JSONDecodeError:
 
 users = list(data.keys())
 
-saveKey()
+#saveKey()
 key = loadKey()
 cipher = Fernet(key)
 
